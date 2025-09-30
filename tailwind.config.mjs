@@ -10,7 +10,58 @@ const config = {
     './src/**/*.{ts,tsx}',
   ],
   darkMode: ['selector', '[data-theme="dark"]'],
-  plugins: [tailwindcssAnimate, typography],
+  plugins: [
+    tailwindcssAnimate,
+    typography,
+    // containerTest用のカスタムプラグイン
+    function ({ addComponents, theme }) {
+      const screens = theme('container.screens');
+      addComponents({
+        // containerTestのベース
+        '.navContainer': {
+          width: '100%',
+          backgroundColor: 'rgba(0,0,0,0.3)',
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+        },
+        // sm
+        [`@media (min-width: ${screens.sm})`]: {
+          '.navContainer': {
+            paddingLeft: '1rem',
+            paddingRight: '1rem',
+          },
+        },
+        // md
+        [`@media (min-width: ${screens.md})`]: {
+          '.navContainer': {
+            paddingLeft: '1rem',
+            paddingRight: '1rem',
+          },
+        },
+        // lg
+        [`@media (min-width: ${screens.lg})`]: {
+          '.navContainer': {
+            paddingLeft: '1rem',
+            paddingRight: '1rem',
+          },
+        },
+        // xl
+        [`@media (min-width: ${screens.xl})`]: {
+          '.navContainer': {
+            paddingLeft: '1rem',
+            paddingRight: '1rem',
+          },
+        },
+        // 2xl
+        [`@media (min-width: ${screens['2xl']})`]: {
+          '.containerTest': {
+            paddingLeft: '1rem',
+            paddingRight: '1rem',
+          },
+        },
+      })
+    }
+  ],
   prefix: '',
   safelist: [
     'lg:col-span-4',
